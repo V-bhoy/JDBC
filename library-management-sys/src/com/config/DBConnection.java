@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBConection {
+public class DBConnection {
 
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/library";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "QBhoyar12#";
 
     private static Connection connection = null;
 
     // private constructor to prevent instantiation
-    private DBConection() {
+    private DBConnection() {
     }
 
     public static synchronized Connection getConnection() throws ClassNotFoundException, SQLException {
