@@ -1,0 +1,24 @@
+-- Insert dummy users
+INSERT INTO users (first_name, last_name, gender, city, state, contact, email)
+VALUES 
+('John', 'Doe', 'Male', 'New York', 'NY', '9876543210', 'john.doe@example.com'),
+('Jane', 'Smith', 'Female', 'Los Angeles', 'CA', '9876543211', 'jane.smith@example.com'),
+('Alice', 'Johnson', 'Female', 'Chicago', 'IL', '9876543212', 'alice.johnson@example.com'),
+('Bob', 'Williams', 'Male', 'Houston', 'TX', '9876543213', 'bob.williams@example.com');
+
+-- Insert dummy books
+INSERT INTO books (title, author, isbn, available_copies)
+VALUES 
+('The Great Gatsby', 'F. Scott Fitzgerald', '9780743273565', 5),
+('To Kill a Mockingbird', 'Harper Lee', '9780061120084', 3),
+('1984', 'George Orwell', '9780451524935', 4),
+('Moby-Dick', 'Herman Melville', '9781503280786', 2),
+('Pride and Prejudice', 'Jane Austen', '9781503290563', 6);
+
+-- Insert dummy borrowed books
+INSERT INTO borrowed_books (user_id, book_id, borrow_date, return_date)
+VALUES 
+(1, 2, '2025-03-01 10:00:00', NULL),  -- John borrowed "To Kill a Mockingbird"
+(2, 3, '2025-03-05 12:30:00', NULL),  -- Jane borrowed "1984"
+(3, 1, '2025-03-07 15:45:00', '2025-03-14 15:45:00'),  -- Alice borrowed and returned "The Great Gatsby"
+(4, 4, '2025-03-10 09:20:00', NULL);  -- Bob borrowed "Moby-Dick"
