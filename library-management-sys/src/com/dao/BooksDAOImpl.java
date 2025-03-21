@@ -71,10 +71,6 @@ public class BooksDAOImpl implements BooksDAO{
             query.append("title = ?, ");
             values.add(book.getTitle());
         }
-        if (book.getIsbn() != null && !book.getIsbn().isEmpty()) {
-            query.append("isbn = ?, ");
-            values.add(book.getIsbn());
-        }
         if (book.getAvailableCopies() > 0) {
             query.append("available_copies = ?, ");
             values.add(book.getAvailableCopies());

@@ -41,6 +41,7 @@ public class BookServiceImpl implements BookService {
         if (existingBook == null) {
             return "Book does not exist! Please register the book first.";
         }
+        book.setBookId(existingBook.getBookId());
         return booksDAO.updateBook(book) ? "Updated book successfully!" : "Failed to update book!";
     }
 
@@ -70,7 +71,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getAllBooks() {
-        return getAllBooks();
+        return booksDAO.getAllBooks();
     }
 
 }

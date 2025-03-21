@@ -52,7 +52,7 @@ public class BookController {
 
                 String barcode;
                 do {
-                    System.out.println("\nEnter the barcode of the book: ");
+                    System.out.println("\nEnter the barcode of the book, it cannot be updated later: ");
                     barcode = sc.nextLine().trim();
                     if (barcode.isEmpty()) {
                         System.out.println("\nBarcode cannot be empty!\n");
@@ -91,7 +91,7 @@ public class BookController {
 
     public void updateBook() {
         Book b = new Book();
-        System.out.println("\nEnter the barcode to update: \n");
+        System.out.println("\nEnter the barcode of book to update: \n");
         String code = sc.nextLine().trim();
         if (code.isEmpty()) {
             System.out.println("\nBarcode cannot be empty!\n");
