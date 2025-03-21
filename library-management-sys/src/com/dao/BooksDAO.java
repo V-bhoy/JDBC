@@ -9,7 +9,7 @@ public interface BooksDAO {
 
     public boolean updateBook(Book book);
 
-    public boolean deleteBook(int bookId);
+    public boolean deleteBook(String bookCode);
 
     public Book getBook(String bookCode);
 

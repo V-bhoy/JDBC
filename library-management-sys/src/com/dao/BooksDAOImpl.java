@@ -100,11 +100,11 @@ public class BooksDAOImpl implements BooksDAO{
     }
 
     @Override
-    public boolean deleteBook(int bookId) {
-        String query = "DELETE FROM books WHERE book_id = ?";
+    public boolean deleteBook(String bookCode) {
+        String query = "DELETE FROM books WHERE isbn = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement smt = conn.prepareStatement(query)) {
-            smt.setInt(1, bookId);
+            smt.setString(1, bookCode);
             return smt.executeUpdate() > 0;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
