@@ -38,18 +38,49 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean updateUser(User user) {
-        String query = "UPDATE users SET first_name = ?, last_name = ?, gender = ?, city = ?, state = ?, contact = ?, email = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?";
+        StringBuilder query = new StringBuilder("UPDATE users SET ");
+        List<Object> values = new ArrayList<>();
 
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement smt = conn.prepareStatement(query)) {
-            smt.setString(1, user.getFirstName());
-            smt.setString(2, user.getLastName());
-            smt.setString(3, user.getGender().toString());
-            smt.setString(4, user.getCity());
-            smt.setString(5, user.getState());
-            smt.setString(6, user.getContact());
-            smt.setString(7, user.getEmail());
-            smt.setInt(8, user.getUserId());
+        if (user.getFirstName() != null && !user.getFirstName().isEmpty()) {
+            query.append("first_name = ?, ");
+            values.add(user.getFirstName());
+        }
+        if (user.getLastName() != null && !user.getLastName().isEmpty()) {
+            query.append("last_name = ?, ");
+            values.add(user.getLastName());
+        }
+        if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+            query.append("email = ?, ");
+            values.add(user.getEmail());
+        }
+        if (user.getContact() != null && !user.getContact().isEmpty()) {
+            query.append("contact = ?, ");
+            values.add(user.getContact());
+        }
+        if (user.getGender() != null) {
+            query.append("gender = ?, ");
+            values.add(user.getGender().toString());
+        }
+        if (user.getCity() != null && !user.getCity().isEmpty()) {
+            query.append("city = ?, ");
+            values.add(user.getCity());
+        }
+        if (user.getState() != null && !user.getState().isEmpty()) {
+            query.append("state = ?, ");
+            values.add(user.getState());
+        }
+        if (values.isEmpty()) {
+            return false;
+        }
 
+        query.setLength(query.length() - 2); // Remove last comma
+        query.append(" WHERE user_id = ?");
+        values.add(user.getUserId());
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement smt = conn.prepareStatement(query.toString())) {
+            for (int i = 0; i < values.size(); i++) {
+                smt.setObject(i + 1, values.get(i));
+            }
+            System.out.println(query.toString());
             return smt.executeUpdate() > 0;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -63,7 +94,6 @@ public class UserDAOImpl implements UserDAO {
 
         try (Connection conn = DBConnection.getConnection(); PreparedStatement smt = conn.prepareStatement(query)) {
             smt.setInt(1, userId);
-
             return smt.executeUpdate() > 0;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -37,6 +37,24 @@ public class App {
         case 1:
             uc.registerUser();
             break;
+        case 2:
+            uc.updateUser();
+            break;
+        case 3:
+            uc.deleteUser();
+            break;
+        case 4:
+            uc.getUser(4);
+            break;
+        case 5:
+            uc.getUser(5);
+            break;
+        case 6:
+            uc.getUser(6);
+            break;
+        case 7:
+            uc.getAllUsers();
+            break;
         default:
             System.out.println("\nEnter a valid choice!\n");
         }
