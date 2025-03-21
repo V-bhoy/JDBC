@@ -1,10 +1,10 @@
 -- Insert dummy users
 INSERT INTO users (first_name, last_name, gender, city, state, contact, email)
 VALUES 
-('John', 'Doe', 'Male', 'New York', 'NY', '9876543210', 'john.doe@example.com'),
-('Jane', 'Smith', 'Female', 'Los Angeles', 'CA', '9876543211', 'jane.smith@example.com'),
-('Alice', 'Johnson', 'Female', 'Chicago', 'IL', '9876543212', 'alice.johnson@example.com'),
-('Bob', 'Williams', 'Male', 'Houston', 'TX', '9876543213', 'bob.williams@example.com');
+('John', 'Doe', 'M', 'New York', 'NY', '9876543210', 'john.doe@example.com'),
+('Jane', 'Smith', 'F', 'Los Angeles', 'CA', '9876543211', 'jane.smith@example.com'),
+('Alice', 'Johnson', 'F', 'Chicago', 'IL', '9876543212', 'alice.johnson@example.com'),
+('Bob', 'Williams', 'M', 'Houston', 'TX', '9876543213', 'bob.williams@example.com');
 
 -- Insert dummy books
 INSERT INTO books (title, author, isbn, available_copies)
