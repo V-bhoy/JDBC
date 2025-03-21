@@ -99,14 +99,15 @@ public class UserController {
 
         if (sc.hasNextInt()) {
             int userId = sc.nextInt();
+            sc.nextLine();
             if (userId <= 0) {
                 System.out.println("\nEnter a valid user Id greater than 0!\n");
                 return;
             }
-            sc.nextLine();
             user.setUserId(userId);
         } else {
             System.out.println("\nInvalid Input! Please enter a numeric userId!\n");
+            sc.next();
             return;
         }
 
@@ -178,6 +179,7 @@ public class UserController {
         System.out.println("Please enter the user id to delete:");
         if (sc.hasNextInt()) {
             int userId = sc.nextInt();
+            sc.nextLine();
             if (userId <= 0) {
                 System.out.println("\nEnter a valid user Id greater than 0!\n");
                 return;
@@ -186,6 +188,7 @@ public class UserController {
             Layouts.printBold(message);
         } else {
             System.out.println("\nInvalid Input! Please enter a numeric userId!\n");
+            sc.next();
             return;
         }
     }
@@ -197,6 +200,7 @@ public class UserController {
             System.out.println("Please enter the user Id:");
             if (sc.hasNextInt()) {
                 int userId = sc.nextInt();
+                sc.nextLine();
                 if (userId <= 0) {
                     System.out.println("\nEnter a valid user Id greater than 0!\n");
                     return;
@@ -204,6 +208,7 @@ public class UserController {
                 user = us.getUser(userId);
             } else {
                 System.out.println("\nInvalid Input! Please enter a numeric userId!\n");
+                sc.next();
                 return;
             }
         } else if (choice == 5) {
