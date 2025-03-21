@@ -13,7 +13,7 @@ import com.util.EmailValidator;
 import com.util.Layouts;
 
 public class UserController {
-    UserService us = new UserServiceImpl(new UserDAOImpl());
+    private UserService us = new UserServiceImpl(new UserDAOImpl());
     Scanner sc = new Scanner(System.in);
 
     public void registerUser() {
