@@ -6,6 +6,7 @@ public class BorrowedBooks {
     private Book book;
     private String borrowDate;
     private String returnDate;
+    private String actualReturnDate;
 
     public int getBorrowId() {
         return borrowId;
@@ -34,14 +35,19 @@ public class BorrowedBooks {
     public String getReturnDate() {
         return returnDate;
     }
+    public String getActualReturnDate() {
+        return actualReturnDate;
+    }
+    public void setActualReturnDate(String actualReturnDate) {
+        this.actualReturnDate = actualReturnDate;
+    }
     public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
     @Override
     public String toString() {
         return "BorrowedBooks [borrowId=" + borrowId + ", user=" + user + ", book=" + book + ", borrowDate="
-                + borrowDate + ", returnDate=" + returnDate + "]";
+                + borrowDate + ", returnDate=" + returnDate + ", actualReturnDate=" + actualReturnDate + "]";
     }
-
      
 }

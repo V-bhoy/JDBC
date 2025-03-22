@@ -68,6 +68,7 @@ public class Mappers {
         bb.setBorrowId(rs.getInt("borrow_id"));
         bb.setBorrowDate(rs.getString("borrow_date"));
         bb.setReturnDate(rs.getString("return_date"));
+        bb.setActualReturnDate(rs.getString("actual_return_date"));
 
         book.setBookId(rs.getInt("book_id"));
         book.setTitle(rs.getString("title"));

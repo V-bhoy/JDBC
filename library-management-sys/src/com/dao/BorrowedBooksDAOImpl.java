@@ -66,7 +66,7 @@ public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
 
     @Override
     public boolean isBookBorrowed(String bookCode, int userId) {
-        String query = "SELECT COUNT(*) FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE b.isbn = ? AND bb.user_id = ? AND bb.return_date > NOW()";
+        String query = "SELECT COUNT(*) FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE b.isbn = ? AND bb.user_id = ? AND bb.actual_return_date IS NULL";
         try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, bookCode);
@@ -85,7 +85,7 @@ public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
     @Override
     public List<Book> getBorrowedBooksByUser(int userId) {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT b.book_id, b.title, b.author, b.isbn, b.available_copies FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id WHERE bb.user_id = ? AND bb.return_date > NOW()";
+        String query = "SELECT b.book_id, b.title, b.author, b.isbn, b.available_copies FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id WHERE bb.user_id = ? AND bb.actual_return_date IS NULL";
         try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, userId);
@@ -109,7 +109,7 @@ public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
     @Override
     public BorrowedBooks getBorrowedBookDetail(int borrow_id) {
         BorrowedBooks bb = null;
-        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, "
+        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, bb.actual_return_date"
                 + "b.book_id, b.title, b.author, b.isbn, b.available_copies, "
                 + "u.user_id, u.first_name, u.last_name, u.gender, u.email, u.contact, u.city, u.state "
                 + "FROM borrowed_books bb " + "JOIN books b ON bb.book_id = b.book_id "
@@ -131,7 +131,7 @@ public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
     @Override
     public List<BorrowedBooks> getAllBorrowedBooksDetails() {
         List<BorrowedBooks> list = new ArrayList<>();
-        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, "
+        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, bb.actual_return_date "
                 + "b.book_id, b.title, b.author, b.isbn, b.available_copies, "
                 + "u.user_id, u.first_name, u.last_name, u.gender, u.email, u.contact, u.city, u.state "
                 + "FROM borrowed_books bb " + "JOIN books b ON bb.book_id = b.book_id "
