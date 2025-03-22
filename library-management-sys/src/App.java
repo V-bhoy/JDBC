@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import com.controller.BookController;
+import com.controller.BorrowedBooksController;
 import com.controller.UserController;
 import com.util.Layouts;
 
@@ -107,6 +108,51 @@ public class App {
 
     }
 
+    public static void displayBorrowedBooksApp() {
+        Layouts.printMargin();
+        System.out.println("Make a choice between 1 to 8: ");
+        Layouts.printMargin();
+        System.out.println("1. Borrow Book");
+        System.out.println("2. Return Book");
+        System.out.println("3. Renew Book");
+        System.out.println("4. Know If Book Is Borrowed (Not Returned)");
+        System.out.println("5. Get Borrowed Books By User (Not Returned)");
+        System.out.println("6. Get Details By Borrow Id");
+        System.out.println("7. Get All Borrowed Books Detail");
+        System.out.println("8. Exit");
+        Layouts.printMargin();
+    }
+
+    public static void handleBorrowedBooksApp(int choice) {
+        BorrowedBooksController bc = new BorrowedBooksController();
+        switch (choice) {
+        case 1:
+            bc.borrowBook();
+            break;
+        case 2:
+            bc.returnBook();
+            break;
+        case 3:
+            bc.renewBook();
+            break;
+        case 4:
+            bc.isBookAlreadyBorrowed();
+            break;
+        case 5:
+            bc.getBorrowedBooksByUser();
+            break;
+        case 6:
+            bc.getBorrowedBookDetail();
+            break;
+        case 7:
+            bc.getAllBorrowedBooksDetails();
+            break;
+        default:
+            System.out.println("\nEnter a valid choice!\n");
+        }
+
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println();
@@ -141,6 +187,16 @@ public class App {
                 }
                 break;
             case 3:
+                boolean bbflag = true;
+                while (bbflag) {
+                    displayBorrowedBooksApp();
+                    int ch = sc.nextInt();
+                    if (ch == 8) {
+                        bbflag = false;
+                        continue;
+                    }
+                   handleBorrowedBooksApp(ch);
+                }
                 break;
             case 4:
                 active = false;
