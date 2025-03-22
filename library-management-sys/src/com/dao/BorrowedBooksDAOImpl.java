@@ -18,19 +18,20 @@ import com.util.Mappers;
 public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
 
     @Override
-    public boolean borrowBook(String bookCode, int userId) {
-        String storedProcedure = "{CALL borrow_book(?, ?, ?)}";
+    public Integer borrowBook(String bookCode, int userId) {
+        String storedProcedure = "{CALL borrow_book(?, ?, ?, ?)}";
         try (Connection conn = DBConnection.getConnection();
                 CallableStatement smt = conn.prepareCall(storedProcedure)) {
             smt.setString(1, bookCode);
             smt.setInt(2, userId);
             smt.registerOutParameter(3, Types.BOOLEAN);
+            smt.registerOutParameter(4, Types.INTEGER);
             smt.execute();
-            return smt.getBoolean(3);
+            return smt.getBoolean(3) ? smt.getInt(4) : 0;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return 0;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.util;
 
 import com.entity.Book;
+import com.entity.BorrowedBooks;
 import com.entity.User;
 
 public class Layouts {
@@ -38,6 +39,21 @@ public class Layouts {
         System.out.println("AUTHOR: " + book.getAuthor());
         System.out.println("ISBN: " + book.getIsbn());
         System.out.println("AVAILABLE COPIES: " + book.getAvailableCopies());
+        System.out.println("\n-----------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------\n");
+    }
+
+    public static void printBorrowedBookData(BorrowedBooks borrow) {
+        System.out.println("\n-----------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------\n");
+        System.out.println("BORROW ID: " + borrow.getBorrowId());
+        System.out.println("BORROW DATE: " + borrow.getBorrowDate());
+        System.out.println("RETURN DATE: " + borrow.getReturnDate());
+        System.out.println("ACTUAL RETURN DATE: " + borrow.getActualReturnDate());
+        System.out.println("BORROWED BOOK DETAILS: ");
+        printBookData(borrow.getBook());
+        System.out.println("BORROWED BY USER DETAILS: ");
+        printUserData(borrow.getUser());
         System.out.println("\n-----------------------------------------------------------------");
         System.out.println("-----------------------------------------------------------------\n");
     }

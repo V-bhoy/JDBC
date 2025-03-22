@@ -6,7 +6,7 @@ import com.entity.Book;
 import com.entity.BorrowedBooks;
 
 public interface BorrowedBooksDAO {
-    public boolean borrowBook(String bookCode, int userId);
+    public Integer borrowBook(String bookCode, int userId);
 
     public boolean returnBook(int borrowId);
 

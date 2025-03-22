@@ -26,7 +26,8 @@ public class BorrowedBooksServiceImpl implements BorrowedBooksService{
         if (isBookAlreadyBorrowed) {
             return "The book is already borrowed!";
         }
-        return borrowedBooksDAO.borrowBook(bookCode, userId) ? "SUCCESS!" : "FAILED - copies not available or the book does not exist!";
+        int borrowId = borrowedBooksDAO.borrowBook(bookCode, userId);
+        return borrowId!=0 ? "SUCCESS! - Borrow Id - "+borrowId+"\nRemember this to track details!" : "FAILED - copies not available or the book does not exist!";
     }
 
     @Override
