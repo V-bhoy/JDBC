@@ -110,7 +110,7 @@ public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
     @Override
     public BorrowedBooks getBorrowedBookDetail(int borrow_id) {
         BorrowedBooks bb = null;
-        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, bb.actual_return_date"
+        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, bb.actual_return_date, "
                 + "b.book_id, b.title, b.author, b.isbn, b.available_copies, "
                 + "u.user_id, u.first_name, u.last_name, u.gender, u.email, u.contact, u.city, u.state "
                 + "FROM borrowed_books bb " + "JOIN books b ON bb.book_id = b.book_id "
@@ -132,7 +132,7 @@ public class BorrowedBooksDAOImpl implements BorrowedBooksDAO {
     @Override
     public List<BorrowedBooks> getAllBorrowedBooksDetails() {
         List<BorrowedBooks> list = new ArrayList<>();
-        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, bb.actual_return_date "
+        String query = "SELECT bb.borrow_id, bb.borrow_date, bb.return_date, bb.actual_return_date, "
                 + "b.book_id, b.title, b.author, b.isbn, b.available_copies, "
                 + "u.user_id, u.first_name, u.last_name, u.gender, u.email, u.contact, u.city, u.state "
                 + "FROM borrowed_books bb " + "JOIN books b ON bb.book_id = b.book_id "

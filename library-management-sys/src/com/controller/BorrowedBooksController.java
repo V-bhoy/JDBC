@@ -128,6 +128,9 @@ public class BorrowedBooksController {
             return;
         }
         List<Book> books = bs.getBorrowedBooksByUser(userId);
+        if (books.isEmpty()) {
+            System.out.println("Found no books borrowed by the user, you can register a book!");
+        }
         for (Book book : books) {
             Layouts.printBookData(book);
         }
@@ -148,6 +151,10 @@ public class BorrowedBooksController {
             return;
         }
         BorrowedBooks borrowDetails = bs.getBorrowedBookDetail(borrowId);
+        if (borrowDetails == null) {
+            System.out.println("\nFound no details for this borrow Id!\n");
+            return;
+        }
         Layouts.printBorrowedBookData(borrowDetails);
     };
 

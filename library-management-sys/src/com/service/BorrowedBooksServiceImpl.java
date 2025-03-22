@@ -37,7 +37,7 @@ public class BorrowedBooksServiceImpl implements BorrowedBooksService{
 
     @Override
     public String renewBook(int borrowId, int userId) {
-        return borrowedBooksDAO.renewBook(borrowId, userId) ? "SUCCESS" : "FAILED - return date overdue, the book was already returned!";
+        return borrowedBooksDAO.renewBook(borrowId, userId) ? "SUCCESS" : "FAILED - return date overdue or the book was already returned!";
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BorrowedBooksServiceImpl implements BorrowedBooksService{
         if (userExists == null) {
             return "User does not exist!";
         }
-        return borrowedBooksDAO.isBookBorrowed(bookCode, userId) ? "The book is borrowed!" : "The book is not borrowed";
+        return borrowedBooksDAO.isBookBorrowed(bookCode, userId) ? "The book is borrowed!" : "The book is not borrowed or The book does not exist!";
     }
 
     @Override
